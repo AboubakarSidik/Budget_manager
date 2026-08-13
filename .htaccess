@@ -1,0 +1,47 @@
+# ============================================================
+# .htaccess - BUDGET MANAGER
+# ============================================================
+
+# ⚠️ Forcer HTTPS (décommenter en production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Bloquer l'accès direct aux fichiers sensibles
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files "functions.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files "session_init.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files "functions_mail.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Désactiver l'indexation des dossiers
+Options -Indexes
+
+# Protection contre le clickjacking
+Header always append X-Frame-Options SAMEORIGIN
+
+# Protection XSS
+Header set X-XSS-Protection "1; mode=block"
+
+# Protection MIME sniffing
+Header set X-Content-Type-Options "nosniff"
+
+# Cache des fichiers CSS et JS (1 semaine)
+<FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+
+# Cache des images (1 mois)
+<FilesMatch "\.(jpg|jpeg|png|gif|ico)$">
+    Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>

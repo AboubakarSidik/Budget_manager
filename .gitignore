@@ -1,0 +1,33 @@
+# ============================================================
+# FICHIERS SENSIBLES - À NE PAS COMMITER
+# ============================================================
+
+# Configuration (contient les mots de passe)
+config.php
+
+# Base de données
+*.sql
+*.sql.gz
+
+# Logs
+*.log
+error_log
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# Dossiers de dépendances
+/vendor/
+/node_modules/
+
+# Fichiers de l'IDE
+/.idea/
+/.vscode/
+*.code-workspace
+
+# Fichiers d'environnement
+.env
+.env.local
