@@ -287,34 +287,7 @@ $nb_non_lues = $stmt->fetchColumn();
     <!-- ============================================================
          HEADER
          ============================================================ -->
-    <header class="app-header">
-        <div class="top-row">
-            <div class="logo"><h1><i class="fas fa-wallet"></i> Budget Manager</h1></div>
-            <div class="user-info">
-                <span class="user-name"><i class="fas fa-user"></i> <?= afficher($_SESSION['utilisateur_nom']) ?></span>
-                <a href="logout.php" class="logout-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-            </div>
-        </div>
-        <nav class="app-nav">
-            <a href="dashboard.php" class="active"><i class="fas fa-tachometer-alt"></i><span class="nav-label">Dashboard</span></a>
-            <a href="budget.php"><i class="fas fa-file-invoice"></i><span class="nav-label">Budget</span></a>
-            <a href="revenus.php"><i class="fas fa-coins"></i><span class="nav-label">Revenus</span></a>
-            <a href="depenses.php"><i class="fas fa-receipt"></i><span class="nav-label">Dépenses</span></a>
-            <a href="categories.php"><i class="fas fa-tags"></i><span class="nav-label">Catégories</span></a>
-            <a href="imprevus.php"><i class="fas fa-exclamation-triangle"></i><span class="nav-label">Imprévus</span></a>
-            <a href="epargne.php"><i class="fas fa-piggy-bank"></i><span class="nav-label">Épargne</span></a>
-            <a href="objectifs.php"><i class="fas fa-bullseye"></i><span class="nav-label">Objectifs</span></a>
-            <a href="historique.php"><i class="fas fa-history"></i><span class="nav-label">Historique</span></a>
-            <a href="statistiques.php"><i class="fas fa-chart-pie"></i><span class="nav-label">Statistiques</span></a>
-            <a href="alertes.php"><i class="fas fa-bell"></i><span class="nav-label">Alertes</span>
-                <?php if ($nb_non_lues > 0): ?>
-                    <span class="badge"><?= $nb_non_lues ?></span>
-                <?php endif; ?>
-            </a>
-            <a href="compte.php"><i class="fas fa-cog"></i><span class="nav-label">Compte</span></a>
-        </nav>
-    </header>
-    
+   <?php require_once 'header.php'; ?>
     <!-- ============================================================
          PAGE HEADER
          ============================================================ -->

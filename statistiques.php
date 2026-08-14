@@ -98,6 +98,21 @@ $imprevus_utilises = getImprevusUtilises($pdo, $mois_id);
 $epargne_reelle = $budget_total - $depenses_reelles - $imprevus_utilises;
 $taux_epargne = ($budget_total > 0) ? round(($epargne_reelle / $budget_total) * 100, 1) : 0;
 
+// 6. Total des dépenses prévues et effectuées pour le taux de réalisation
+$stmt = $pdo->prepare("SELECT COALESCE(SUM(montant_prevu), 0) FROM depense WHERE mois_id = ?");
+$stmt->execute([$mois_id]);
+$total_prevues = $stmt->fetchColumn();
+
+$stmt = $pdo->prepare("SELECT COALESCE(SUM(montant_reel), 0) FROM depense WHERE mois_id = ? AND montant_reel IS NOT NULL");
+$stmt->execute([$mois_id]);
+$total_effectuees = $stmt->fetchColumn();
+
+// Taux de réalisation global
+$taux_realisation_global = 0;
+if ($total_prevues > 0) {
+    $taux_realisation_global = round(($total_effectuees / $total_prevues) * 100, 1);
+}
+
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM notification WHERE compte_id = ? AND etat = 'non_lue'");
 $stmt->execute([$compte_id]);
 $nb_alertes = $stmt->fetchColumn();
@@ -221,39 +236,11 @@ $couleurs = ['#2563eb', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#ec4899', '
         @media (max-width: 480px) { .app-container { padding: 10px 12px; } .app-header { padding: 10px 16px; } .card { padding: 16px; } }
     </style>
 </head>
-<body>
+<body class="<?= ($_SESSION['theme'] ?? 'clair') === 'sombre' ? 'theme-sombre' : '' ?>">
+
 <div class="app-container">
     
-    <!-- ============================================================
-         HEADER
-         ============================================================ -->
-    <header class="app-header">
-        <div class="top-row">
-            <div class="logo"><h1><i class="fas fa-wallet"></i> Budget Manager</h1></div>
-            <div class="user-info">
-                <span class="user-name"><i class="fas fa-user"></i> <?= afficher($_SESSION['utilisateur_nom']) ?></span>
-                <a href="logout.php" class="logout-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-            </div>
-        </div>
-        <nav class="app-nav">
-            <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i><span class="nav-label">Dashboard</span></a>
-            <a href="budget.php"><i class="fas fa-file-invoice"></i><span class="nav-label">Budget</span></a>
-            <a href="revenus.php"><i class="fas fa-coins"></i><span class="nav-label">Revenus</span></a>
-            <a href="depenses.php"><i class="fas fa-receipt"></i><span class="nav-label">Dépenses</span></a>
-            <a href="categories.php"><i class="fas fa-tags"></i><span class="nav-label">Catégories</span></a>
-            <a href="imprevus.php"><i class="fas fa-exclamation-triangle"></i><span class="nav-label">Imprévus</span></a>
-            <a href="epargne.php"><i class="fas fa-piggy-bank"></i><span class="nav-label">Épargne</span></a>
-            <a href="objectifs.php"><i class="fas fa-bullseye"></i><span class="nav-label">Objectifs</span></a>
-            <a href="historique.php"><i class="fas fa-history"></i><span class="nav-label">Historique</span></a>
-            <a href="statistiques.php" class="active"><i class="fas fa-chart-pie"></i><span class="nav-label">Statistiques</span></a>
-            <a href="alertes.php"><i class="fas fa-bell"></i><span class="nav-label">Alertes</span>
-                <?php if ($nb_non_lues > 0): ?>
-                    <span class="badge"><?= $nb_non_lues ?></span>
-                <?php endif; ?>
-            </a>
-            <a href="compte.php"><i class="fas fa-cog"></i><span class="nav-label">Compte</span></a>
-        </nav>
-    </header>
+    <?php require_once 'header.php'; ?>
     
     <!-- ============================================================
          PAGE HEADER
@@ -288,6 +275,12 @@ $couleurs = ['#2563eb', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#ec4899', '
             </div>
         </div>
         <div class="indicator-item">
+            <div class="label">📊 Taux de réalisation</div>
+            <div class="value <?= $taux_realisation_global <= 100 ? 'green' : ($taux_realisation_global <= 120 ? 'orange' : 'red') ?>">
+                <?= $taux_realisation_global ?>%
+            </div>
+        </div>
+        <div class="indicator-item">
             <div class="label">🔔 Alertes</div>
             <div class="value <?= $nb_alertes > 0 ? 'red' : 'green' ?>">
                 <?= $nb_alertes ?>
@@ -303,10 +296,13 @@ $couleurs = ['#2563eb', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#ec4899', '
          GRAPHIQUES
          ============================================================ -->
     <div class="chart-grid">
+        <!-- Camembert Dépenses -->
         <div class="chart-box">
             <h4><i class="fas fa-utensils" style="color:#22c55e;"></i> Dépenses par catégorie</h4>
             <canvas id="chartDepenses"></canvas>
         </div>
+        
+        <!-- Camembert Revenus -->
         <div class="chart-box">
             <h4><i class="fas fa-coins" style="color:#2563eb;"></i> Revenus par source</h4>
             <canvas id="chartRevenus"></canvas>
@@ -314,10 +310,13 @@ $couleurs = ['#2563eb', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#ec4899', '
     </div>
     
     <div class="chart-grid">
+        <!-- Évolution -->
         <div class="chart-box">
             <h4><i class="fas fa-chart-line" style="color:#8b5cf6;"></i> Évolution (6 mois)</h4>
             <canvas id="chartEvolution"></canvas>
         </div>
+        
+        <!-- Prévision vs Réel -->
         <div class="chart-box">
             <h4><i class="fas fa-arrows-left-right" style="color:#eab308;"></i> Prévision vs Réel</h4>
             <canvas id="chartPrevuReel"></canvas>

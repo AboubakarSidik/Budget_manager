@@ -78,6 +78,12 @@ $totaux = calculerTotaux($depenses);
 $total_prevues = $totaux['prevues'];
 $total_effectuees = $totaux['effectuees'];
 
+// Taux de réalisation global
+$taux_realisation_global = 0;
+if ($total_prevues > 0) {
+    $taux_realisation_global = round(($total_effectuees / $total_prevues) * 100, 1);
+}
+
 // ============================================================
 // TRAITEMENT : AJOUT D'UNE DÉPENSE PRÉVUE
 // ============================================================
@@ -461,36 +467,7 @@ if (isset($_SESSION['message_info'])) {
 
 <div class="app-container">
     
-    <!-- ============================================================
-         HEADER
-         ============================================================ -->
-    <header class="app-header">
-        <div class="top-row">
-            <div class="logo"><h1><i class="fas fa-wallet"></i> Budget Manager</h1></div>
-            <div class="user-info">
-                <span class="user-name"><i class="fas fa-user"></i> <?= afficher($_SESSION['utilisateur_nom']) ?></span>
-                <a href="logout.php" class="logout-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-            </div>
-        </div>
-        <nav class="app-nav">
-            <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i><span class="nav-label">Dashboard</span></a>
-            <a href="budget.php"><i class="fas fa-file-invoice"></i><span class="nav-label">Budget</span></a>
-            <a href="revenus.php"><i class="fas fa-coins"></i><span class="nav-label">Revenus</span></a>
-            <a href="depenses.php" class="active"><i class="fas fa-receipt"></i><span class="nav-label">Dépenses</span></a>
-            <a href="categories.php"><i class="fas fa-tags"></i><span class="nav-label">Catégories</span></a>
-            <a href="imprevus.php"><i class="fas fa-exclamation-triangle"></i><span class="nav-label">Imprévus</span></a>
-            <a href="epargne.php"><i class="fas fa-piggy-bank"></i><span class="nav-label">Épargne</span></a>
-            <a href="objectifs.php"><i class="fas fa-bullseye"></i><span class="nav-label">Objectifs</span></a>
-            <a href="historique.php"><i class="fas fa-history"></i><span class="nav-label">Historique</span></a>
-            <a href="statistiques.php"><i class="fas fa-chart-pie"></i><span class="nav-label">Statistiques</span></a>
-            <a href="alertes.php"><i class="fas fa-bell"></i><span class="nav-label">Alertes</span>
-                <?php if ($nb_non_lues > 0): ?>
-                    <span class="badge"><?= $nb_non_lues ?></span>
-                <?php endif; ?>
-            </a>
-            <a href="compte.php"><i class="fas fa-cog"></i><span class="nav-label">Compte</span></a>
-        </nav>
-    </header>
+    <?php require_once 'header.php'; ?>
     
     <!-- ============================================================
          PAGE HEADER
@@ -530,6 +507,12 @@ if (isset($_SESSION['message_info'])) {
             <div class="value"><?= formatFCFA($total_effectuees) ?></div>
         </div>
         <div>
+            <div class="label">📈 Taux de réalisation</div>
+            <div class="value <?= $taux_realisation_global <= 100 ? 'green' : ($taux_realisation_global <= 120 ? 'orange' : 'red') ?>">
+                <?= $taux_realisation_global ?>%
+            </div>
+        </div>
+        <div>
             <div class="label">📈 Reste disponible</div>
             <div class="value"><?= formatFCFA($budget_total - $total_prevues) ?></div>
         </div>
@@ -553,8 +536,8 @@ if (isset($_SESSION['message_info'])) {
         </div>
         <div class="indicator-item">
             <div class="label">Taux de réalisation</div>
-            <div class="value blue">
-                <?= $total_prevues > 0 ? round(($total_effectuees / $total_prevues) * 100, 1) : 0 ?>%
+            <div class="value <?= $taux_realisation_global <= 100 ? 'green' : ($taux_realisation_global <= 120 ? 'orange' : 'red') ?>">
+                <?= $taux_realisation_global ?>%
             </div>
         </div>
     </div>
@@ -693,6 +676,7 @@ if (isset($_SESSION['message_info'])) {
                         <th>Priorité</th>
                         <th>Prévu</th>
                         <th>Réel</th>
+                        <th>Taux</th>
                         <th>Plafond</th>
                         <th>Statut</th>
                         <th style="text-align:right;">Actions</th>
@@ -707,6 +691,25 @@ if (isset($_SESSION['message_info'])) {
                                 <td><span class="priorite-badge <?= $d['priorite'] ?>"><?= ucfirst($d['priorite']) ?></span></td>
                                 <td><?= formatFCFA($d['montant_prevu']) ?></td>
                                 <td><?= $d['montant_reel'] !== null ? formatFCFA($d['montant_reel']) : '-' ?></td>
+                                <td>
+                                    <?php if ($d['montant_reel'] !== null && $d['montant_prevu'] > 0): 
+                                        $taux = round(($d['montant_reel'] / $d['montant_prevu']) * 100, 1);
+                                        $couleur_taux = $taux <= 100 ? '#22c55e' : ($taux <= 120 ? '#eab308' : '#ef4444');
+                                    ?>
+                                        <span style="font-weight:600; color:<?= $couleur_taux ?>;">
+                                            <?= $taux ?>%
+                                        </span>
+                                        <?php if ($taux > 100): ?>
+                                            <span style="font-size:11px; color:#ef4444;">⬆️ +<?= round($taux - 100, 1) ?>%</span>
+                                        <?php elseif ($taux < 100): ?>
+                                            <span style="font-size:11px; color:#22c55e;">⬇️ -<?= round(100 - $taux, 1) ?>%</span>
+                                        <?php else: ?>
+                                            <span style="font-size:11px; color:#22c55e;">✅ Parfait</span>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <span style="color:#94a3b8;">-</span>
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <?php if ($d['montant_plafond'] > 0): ?>
                                         <?= formatFCFA($d['montant_plafond']) ?>
@@ -742,11 +745,12 @@ if (isset($_SESSION['message_info'])) {
                             <td colspan="3" style="text-align:right;">Total</td>
                             <td><?= formatFCFA($total_prevues) ?></td>
                             <td><?= formatFCFA($total_effectuees) ?></td>
+                            <td><?= $taux_realisation_global ?>%</td>
                             <td colspan="3"></td>
                         </tr>
                     <?php else: ?>
                         <tr>
-                            <td colspan="8" style="text-align:center; padding:30px 0; color:#94a3b8;">
+                            <td colspan="9" style="text-align:center; padding:30px 0; color:#94a3b8;">
                                 <i class="fas fa-inbox" style="font-size:28px; display:block; margin-bottom:8px;"></i>
                                 Aucune dépense enregistrée pour ce mois.
                             </td>
