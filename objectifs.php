@@ -408,9 +408,224 @@ if (isset($_SESSION['message_info'])) {
             .modal-box { margin: 16px; padding: 24px; }
         }
         @media (max-width: 480px) { .app-container { padding: 10px 12px; } .app-header { padding: 10px 16px; } .card { padding: 16px; } }
-    </style>
+
+
+        /* ============================================================
+           MODE SOMBRE (genere automatiquement)
+           ============================================================ */
+
+body.theme-sombre {
+    background: #334155;
+}
+
+body.theme-sombre .app-header {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .app-header .logo h1 i {
+    -webkit-text-fill-color: #60a5fa;
+}
+
+body.theme-sombre .app-header .user-info .user-name {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-header .user-info .logout-link {
+    color: #f87171;
+}
+
+body.theme-sombre .app-header .user-info .logout-link:hover {
+    background: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-sombre .app-nav {
+    border-top: 1px solid #334155;
+}
+
+body.theme-sombre .app-nav a .nav-label {
+    color: #94a3b8;
+}
+
+body.theme-sombre .app-nav a:hover {
+    color: #60a5fa;
+}
+
+body.theme-sombre .app-nav a.active {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active .nav-label {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active i {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .message.error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .message.success {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+body.theme-sombre .message.info {
+    background: rgba(37, 99, 235, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+body.theme-sombre .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .card h3 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .card h3 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .form-group label {
+    color: #e2e8f0;
+}
+
+body.theme-sombre .form-group input, body.theme-sombre .form-group select {
+    border: 2px solid #334155;
+}
+
+body.theme-sombre .table-container {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .table-container th {
+    background: #0f172a;
+    color: #94a3b8;
+    border-bottom: 1px solid #334155;
+}
+
+body.theme-sombre .table-container td {
+    color: #f1f5f9;
+    border-bottom: 1px solid #334155;
+}
+
+body.theme-sombre .table-container tr:hover td {
+    background: #0f172a;
+}
+
+body.theme-sombre .table-container .total-row td {
+    background: #0f172a;
+    border-top: 2px solid #334155;
+}
+
+body.theme-sombre .table-container .actions a:hover {
+    background: #334155;
+    color: #60a5fa;
+}
+
+body.theme-sombre .table-container .actions a.delete:hover {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+}
+
+body.theme-sombre .statut-badge.en-cours {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+}
+
+body.theme-sombre .statut-badge.a-risque {
+    background: rgba(217, 119, 6, 0.12);
+    color: #fbbf24;
+}
+
+body.theme-sombre .statut-badge.impossible {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+}
+
+body.theme-sombre .statut-badge.atteint {
+    background: rgba(79, 70, 229, 0.18);
+    color: #818cf8;
+}
+
+body.theme-sombre .statut-badge.abandonne {
+    background: #334155;
+}
+
+body.theme-sombre .epargne-dispo {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.3));
+}
+
+body.theme-sombre .epargne-dispo .label {
+    color: #4ade80;
+}
+
+body.theme-sombre .repartition-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .repartition-card .item {
+    border-bottom: 1px solid #334155;
+}
+
+body.theme-sombre .repartition-card .item .name {
+    color: #cbd5e1;
+}
+
+body.theme-sombre .repartition-card .item .amount {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .modal-box {
+    background: #1e293b;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+}
+
+body.theme-sombre .modal-box .modal-icon.edit {
+    color: #60a5fa;
+}
+
+body.theme-sombre .modal-box .modal-icon.danger {
+    color: #f87171;
+}
+
+body.theme-sombre .modal-box h3 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .modal-box h3.danger {
+    color: #f87171;
+}
+
+body.theme-sombre .modal-box p {
+    color: #cbd5e1;
+}
+
+body.theme-sombre .modal-box .modal-actions .btn-cancel {
+    background: #334155;
+    color: #f1f5f9;
+}
+</style>
 </head>
-<body class="<?= ($_SESSION['theme'] ?? 'clair') === 'sombre' ? 'theme-sombre' : '' ?>">
+<body>
 
 <div class="app-container">
     

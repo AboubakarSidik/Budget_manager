@@ -77,7 +77,7 @@ $stmt->execute([$compte_id]);
 $suggestions = $stmt->fetchAll();
 
 foreach ($suggestions as $sug) {
-    $message = $messages_suggestion[array_rand($messages_suggestion)] . ' : ' . afficher($sug['nom']) . ' (dépassé ' . $sug['nb_mois'] . ' mois consécutifs)';
+    $message = $messages_suggestion[array_rand($messages_suggestion)] . ' : ' . $sug['nom'] . ' (dépassé ' . $sug['nb_mois'] . ' mois consécutifs)';
     $stmt = $pdo->prepare("
         INSERT INTO notification (id, compte_id, type, priorite, message, date, etat, categorie_id)
         VALUES (?, ?, 'depassement', 'suggestion', ?, NOW(), 'non_lue', ?)
@@ -431,7 +431,209 @@ if (isset($_SESSION['message_info'])) {
             .modal-box { margin: 16px; padding: 24px; }
         }
         @media (max-width: 480px) { .app-container { padding: 10px 12px; } .app-header { padding: 10px 16px; } }
-    </style>
+
+
+        /* ============================================================
+           MODE SOMBRE (genere automatiquement)
+           ============================================================ */
+
+body.theme-sombre {
+    background: #334155;
+}
+
+body.theme-sombre .app-header {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .app-header .logo h1 i {
+    -webkit-text-fill-color: #60a5fa;
+}
+
+body.theme-sombre .app-header .user-info .user-name {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-header .user-info .logout-link {
+    color: #f87171;
+}
+
+body.theme-sombre .app-header .user-info .logout-link:hover {
+    background: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-sombre .app-nav {
+    border-top: 1px solid #334155;
+}
+
+body.theme-sombre .app-nav a .nav-label {
+    color: #94a3b8;
+}
+
+body.theme-sombre .app-nav a:hover {
+    color: #60a5fa;
+}
+
+body.theme-sombre .app-nav a.active {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active .nav-label {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active i {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .message.error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .message.success {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+body.theme-sombre .message.info {
+    background: rgba(37, 99, 235, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+body.theme-sombre .filters a {
+    background: #334155;
+    color: #94a3b8;
+}
+
+body.theme-sombre .notification-item {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .notification-item.non-lue {
+    background: #0f172a;
+}
+
+body.theme-sombre .notification-item .icon.critique {
+    color: #f87171;
+}
+
+body.theme-sombre .notification-item .icon.attention {
+    color: #fbbf24;
+}
+
+body.theme-sombre .notification-item .icon.information {
+    color: #60a5fa;
+}
+
+body.theme-sombre .notification-item .icon.suggestion {
+    color: #a78bfa;
+}
+
+body.theme-sombre .notification-item .content .message {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .notification-item .content .detail {
+    color: #94a3b8;
+}
+
+body.theme-sombre .notification-item .content .actions .btn-lire {
+    color: #60a5fa;
+    background: rgba(37, 99, 235, 0.12);
+}
+
+body.theme-sombre .notification-item .content .actions .btn-lire:hover {
+    background: rgba(37, 99, 235, 0.3);
+}
+
+body.theme-sombre .notification-item .content .actions .btn-supprimer {
+    color: #f87171;
+    background: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-sombre .notification-item .content .actions .btn-supprimer:hover {
+    background: rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .badge-priorite.critique {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+}
+
+body.theme-sombre .badge-priorite.attention {
+    background: rgba(217, 119, 6, 0.12);
+    color: #fbbf24;
+}
+
+body.theme-sombre .badge-priorite.information {
+    background: rgba(37, 99, 235, 0.12);
+    color: #60a5fa;
+}
+
+body.theme-sombre .badge-priorite.suggestion {
+    background: rgba(139, 92, 246, 0.18);
+}
+
+body.theme-sombre .actions-bar {
+    border-top: 1px solid #334155;
+}
+
+body.theme-sombre .actions-bar .btn-supprimer-toutes {
+    color: #f87171;
+    background: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-sombre .actions-bar .btn-supprimer-toutes:hover {
+    background: rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .empty-state h4 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .modal-box {
+    background: #1e293b;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+}
+
+body.theme-sombre .modal-box .modal-icon.warning {
+    color: #fbbf24;
+}
+
+body.theme-sombre .modal-box .modal-icon.danger {
+    color: #f87171;
+}
+
+body.theme-sombre .modal-box h3 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .modal-box h3.danger {
+    color: #f87171;
+}
+
+body.theme-sombre .modal-box p {
+    color: #cbd5e1;
+}
+
+body.theme-sombre .modal-box .modal-actions .btn-cancel {
+    background: #334155;
+    color: #f1f5f9;
+}
+</style>
 </head>
 <body>
 <div class="app-container">

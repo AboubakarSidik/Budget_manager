@@ -150,7 +150,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email']) && empty($er
             border: 1px solid #e2e8f0;
         }
         .lien-box a { color: #2563eb; text-decoration: underline; }
-    </style>
+
+
+        /* ============================================================
+           MODE SOMBRE (genere automatiquement)
+           ============================================================ */
+
+body.theme-sombre {
+    background: #0f172a;
+}
+
+body.theme-sombre .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .card h2 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .card .subtitle {
+    color: #94a3b8;
+}
+
+body.theme-sombre .form-group label {
+    color: #e2e8f0;
+}
+
+body.theme-sombre .form-group input {
+    border: 2px solid #334155;
+}
+
+body.theme-sombre .back-link {
+    color: #94a3b8;
+}
+
+body.theme-sombre .back-link a {
+    color: #60a5fa;
+}
+
+body.theme-sombre .message.error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .message.success {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+body.theme-sombre .lien-box {
+    background: #334155;
+    color: #60a5fa;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .lien-box a {
+    color: #60a5fa;
+}
+</style>
 </head>
 <body>
 

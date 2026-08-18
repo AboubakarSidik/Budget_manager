@@ -566,7 +566,186 @@ $deja_visiteur = isset($_COOKIE['budget_manager_visited']);
                 font-size: 20px;
             }
         }
-    </style>
+
+
+        /* ============================================================
+           MODE SOMBRE (genere automatiquement)
+           ============================================================ */
+
+body.theme-sombre {
+    background: #1e293b;
+    color: #f1f5f9;
+}
+
+body.theme-sombre /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+    border-bottom: 2px solid #334155;
+}
+
+body.theme-sombre .logo-text {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .logo-text span {
+    color: #60a5fa;
+}
+
+body.theme-sombre .nav-links .btn-login {
+    color: #cbd5e1;
+}
+
+body.theme-sombre .nav-links .btn-login:hover {
+    background: #334155;
+}
+
+body.theme-sombre .hero-left h1 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .hero-left p {
+    color: #94a3b8;
+}
+
+body.theme-sombre .hero-actions .btn-secondary {
+    color: #f1f5f9;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .hero-actions .btn-secondary:hover {
+    background: #0f172a;
+}
+
+body.theme-sombre /* --- MOCKUP --- */
+        .mockup {
+    background: #0f172a;
+    border: 2px solid #334155;
+}
+
+body.theme-sombre .mockup-grid .stat {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .mockup-grid .stat .value {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .mockup-grid .stat .value.blue {
+    color: #60a5fa;
+}
+
+body.theme-sombre .mockup-grid .stat .value.green {
+    color: #4ade80;
+}
+
+body.theme-sombre .mockup-grid .stat .value.orange {
+    color: #fbbf24;
+}
+
+body.theme-sombre /* ============================================================
+           STATS BANNER 
+           ============================================================ */
+        .stats-row {
+    border-top: 2px solid #334155;
+    border-bottom: 2px solid #334155;
+}
+
+body.theme-sombre .stats-row .stat-item {
+    border-right: 2px solid #334155;
+}
+
+body.theme-sombre .stats-row .stat-item .number {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .stats-row .stat-item .number .blue {
+    color: #60a5fa;
+}
+
+body.theme-sombre .stats-row .stat-item .number .green {
+    color: #4ade80;
+}
+
+body.theme-sombre .stats-row .stat-item .number .orange {
+    color: #fbbf24;
+}
+
+body.theme-sombre .stats-row .stat-item .number .purple {
+    color: #a78bfa;
+}
+
+body.theme-sombre .stats-row .stat-item .desc {
+    color: #94a3b8;
+}
+
+body.theme-sombre .features-header h2 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .features-header p {
+    color: #94a3b8;
+}
+
+body.theme-sombre .feature-card {
+    background: #1e293b;
+    border: 2px solid #334155;
+}
+
+body.theme-sombre .feature-card .icon.blue {
+    background: rgba(37, 99, 235, 0.12);
+    color: #60a5fa;
+}
+
+body.theme-sombre .feature-card .icon.green {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+}
+
+body.theme-sombre .feature-card .icon.orange {
+    background: rgba(217, 119, 6, 0.15);
+    color: #fbbf24;
+}
+
+body.theme-sombre .feature-card .icon.purple {
+    background: rgba(139, 92, 246, 0.18);
+    color: #a78bfa;
+}
+
+body.theme-sombre .feature-card .icon.red {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+}
+
+body.theme-sombre .feature-card .icon.teal {
+    background: rgba(20, 184, 166, 0.15);
+    color: #2dd4bf;
+}
+
+body.theme-sombre .feature-card h4 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .feature-card p {
+    color: #94a3b8;
+}
+
+body.theme-sombre /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+    border-top: 2px solid #334155;
+}
+
+body.theme-sombre .footer .heart {
+    color: #f87171;
+}
+
+body.theme-sombre .stats-row .stat-item {
+    border-bottom: 1px solid #334155;
+}
+</style>
 </head>
 <body>
 

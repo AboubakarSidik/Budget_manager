@@ -136,7 +136,122 @@ $nb_non_lues = $stmt->fetchColumn();
             .app-nav a .nav-label { font-size: 8px; }
         }
         @media (max-width: 480px) { .app-container { padding: 10px 12px; } .app-header { padding: 10px 16px; } .epargne-card .value { font-size: 28px; } }
-    </style>
+
+
+        /* ============================================================
+           MODE SOMBRE (genere automatiquement)
+           ============================================================ */
+
+body.theme-sombre {
+    background: #334155;
+}
+
+body.theme-sombre .app-header {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .app-header .logo h1 i {
+    -webkit-text-fill-color: #60a5fa;
+}
+
+body.theme-sombre .app-header .user-info .user-name {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-header .user-info .logout-link {
+    color: #f87171;
+}
+
+body.theme-sombre .app-header .user-info .logout-link:hover {
+    background: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-sombre .app-nav {
+    border-top: 1px solid #334155;
+}
+
+body.theme-sombre .app-nav a .nav-label {
+    color: #94a3b8;
+}
+
+body.theme-sombre .app-nav a:hover {
+    color: #60a5fa;
+}
+
+body.theme-sombre .app-nav a.active {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active .nav-label {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active i {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .card h3 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .card h3 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .epargne-card {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.3));
+}
+
+body.theme-sombre .epargne-card .label {
+    color: #4ade80;
+}
+
+body.theme-sombre .epargne-card .sub {
+    color: #4ade80;
+}
+
+body.theme-sombre .detail-item {
+    background: #0f172a;
+}
+
+body.theme-sombre .detail-item .label {
+    color: #94a3b8;
+}
+
+body.theme-sombre .detail-item .value {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .detail-item .value.green {
+    color: #4ade80;
+}
+
+body.theme-sombre .detail-item .value.blue {
+    color: #60a5fa;
+}
+
+body.theme-sombre .detail-item .value.orange {
+    color: #fbbf24;
+}
+
+body.theme-sombre .detail-item .value.red {
+    color: #f87171;
+}
+</style>
 </head>
 <body>
 <div class="app-container">
@@ -210,5 +325,6 @@ $nb_non_lues = $stmt->fetchColumn();
     
 </div>
 
+<script src="js/app.js"></script>
 </body>
 </html>

@@ -279,7 +279,178 @@ $nb_non_lues = $stmt->fetchColumn();
             .indicator-card { padding: 14px 18px; }
             .indicator-card .value { font-size: 20px; }
         }
-    </style>
+
+
+        /* ============================================================
+           MODE SOMBRE (genere automatiquement)
+           ============================================================ */
+
+body.theme-sombre {
+    background: #334155;
+}
+
+body.theme-sombre .app-header {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .app-header .logo h1 i {
+    -webkit-text-fill-color: #60a5fa;
+}
+
+body.theme-sombre .app-header .user-info .user-name {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-header .user-info .logout-link {
+    color: #f87171;
+}
+
+body.theme-sombre .app-header .user-info .logout-link:hover {
+    background: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-sombre .app-nav {
+    border-top: 1px solid #334155;
+}
+
+body.theme-sombre .app-nav a .nav-label {
+    color: #94a3b8;
+}
+
+body.theme-sombre .app-nav a:hover {
+    color: #60a5fa;
+}
+
+body.theme-sombre .app-nav a.active {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active .nav-label {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active i {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .page-header .badge-cloture {
+    background: rgba(217, 119, 6, 0.12);
+    color: #fbbf24;
+}
+
+body.theme-sombre .page-header .badge-en-cours {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+}
+
+body.theme-sombre .message.info {
+    background: rgba(37, 99, 235, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+body.theme-sombre .message.info a {
+    color: #60a5fa;
+}
+
+body.theme-sombre .indicator-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .indicator-card .label {
+    color: #94a3b8;
+}
+
+body.theme-sombre .indicator-card .value {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .indicator-card .value.green {
+    color: #4ade80;
+}
+
+body.theme-sombre .indicator-card .value.blue {
+    color: #60a5fa;
+}
+
+body.theme-sombre .indicator-card .value.orange {
+    color: #fbbf24;
+}
+
+body.theme-sombre .indicator-card .value.red {
+    color: #f87171;
+}
+
+body.theme-sombre .content-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .content-card h3 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .content-card h3 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .mois-info p {
+    color: #cbd5e1;
+    border-bottom: 1px solid #334155;
+}
+
+body.theme-sombre .actions-list a {
+    background: #0f172a;
+    color: #f1f5f9;
+}
+
+body.theme-sombre .actions-list a:hover {
+    background: #334155;
+}
+
+body.theme-sombre .actions-list a .fa-plus-circle {
+    color: #4ade80;
+}
+
+body.theme-sombre .actions-list a .fa-chart-line {
+    color: #fbbf24;
+}
+
+body.theme-sombre .actions-list a .fa-bullseye {
+    color: #a78bfa;
+}
+
+body.theme-sombre .actions-list a .fa-history {
+    color: #60a5fa;
+}
+
+body.theme-sombre .profile-banner {
+    background: rgba(217, 119, 6, 0.12);
+    border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+body.theme-sombre .profile-banner p {
+    color: #fbbf24;
+}
+
+body.theme-sombre .profile-banner p i {
+    color: #fbbf24;
+}
+
+body.theme-sombre .app-footer {
+    border-top: 1px solid #334155;
+}
+</style>
 </head>
 <body>
 <div class="app-container">

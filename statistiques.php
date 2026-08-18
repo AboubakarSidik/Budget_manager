@@ -234,9 +234,140 @@ $couleurs = ['#2563eb', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#ec4899', '
             .indicator-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) { .app-container { padding: 10px 12px; } .app-header { padding: 10px 16px; } .card { padding: 16px; } }
-    </style>
+
+
+        /* ============================================================
+           MODE SOMBRE (genere automatiquement)
+           ============================================================ */
+
+body.theme-sombre {
+    background: #334155;
+}
+
+body.theme-sombre .app-header {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .app-header .logo h1 i {
+    -webkit-text-fill-color: #60a5fa;
+}
+
+body.theme-sombre .app-header .user-info .user-name {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-header .user-info .logout-link {
+    color: #f87171;
+}
+
+body.theme-sombre .app-header .user-info .logout-link:hover {
+    background: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-sombre .app-nav {
+    border-top: 1px solid #334155;
+}
+
+body.theme-sombre .app-nav a .nav-label {
+    color: #94a3b8;
+}
+
+body.theme-sombre .app-nav a:hover {
+    color: #60a5fa;
+}
+
+body.theme-sombre .app-nav a.active {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active .nav-label {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .app-nav a.active i {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .page-header h2 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .message.error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .message.success {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+body.theme-sombre .message.info {
+    background: rgba(37, 99, 235, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+body.theme-sombre .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .card h3 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .card h3 i {
+    color: #60a5fa;
+}
+
+body.theme-sombre .chart-box {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .chart-box h4 {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .indicator-item {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.theme-sombre .indicator-item .label {
+    color: #94a3b8;
+}
+
+body.theme-sombre .indicator-item .value {
+    color: #f1f5f9;
+}
+
+body.theme-sombre .indicator-item .value.green {
+    color: #4ade80;
+}
+
+body.theme-sombre .indicator-item .value.blue {
+    color: #60a5fa;
+}
+
+body.theme-sombre .indicator-item .value.orange {
+    color: #fbbf24;
+}
+
+body.theme-sombre .indicator-item .value.red {
+    color: #f87171;
+}
+</style>
 </head>
-<body class="<?= ($_SESSION['theme'] ?? 'clair') === 'sombre' ? 'theme-sombre' : '' ?>">
+<body>
 
 <div class="app-container">
     
@@ -446,5 +577,6 @@ new Chart(ctxPrevuReel, {
 <?php endif; ?>
 </script>
 
+<script src="js/app.js"></script>
 </body>
 </html>

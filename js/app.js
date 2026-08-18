@@ -294,3 +294,59 @@ function getFilterParam() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('filtre') || 'toutes';
 }
+
+// ============================================================
+// GESTION DU THÈME AVEC localStorage (SYNCHRONISÉ)
+// ============================================================
+
+// Appliquer le thème
+function appliquerTheme(theme) {
+    const body = document.body;
+    const icon = document.getElementById('themeIcon');
+    const label = document.getElementById('themeLabel');
+    
+    if (theme === 'sombre') {
+        body.classList.add('theme-sombre');
+        if (icon) icon.className = 'fas fa-moon';
+        if (label) label.textContent = 'Sombre';
+    } else {
+        body.classList.remove('theme-sombre');
+        if (icon) icon.className = 'fas fa-sun';
+        if (label) label.textContent = 'Clair';
+    }
+    localStorage.setItem('theme', theme);
+}
+
+// Récupérer le thème
+function getTheme() {
+    return localStorage.getItem('theme') || 'clair';
+}
+
+// Basculer le thème
+function toggleTheme() {
+    const actuel = getTheme();
+    const nouveau = actuel === 'clair' ? 'sombre' : 'clair';
+    appliquerTheme(nouveau);
+}
+
+// Charger le thème au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    const theme = getTheme();
+    appliquerTheme(theme);
+});
+
+// Écouter les changements dans les autres onglets
+window.addEventListener('storage', function(e) {
+    if (e.key === 'theme') {
+        appliquerTheme(e.newValue);
+    }
+});
+
+// Charger le thème AVANT l'affichage complet (anti-flash)
+(function() {
+    const theme = localStorage.getItem('theme') || 'clair';
+    if (theme === 'sombre') {
+        document.documentElement.classList.add('theme-sombre');
+        document.body.classList.add('theme-sombre');
+    }
+})();

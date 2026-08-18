@@ -133,7 +133,89 @@ if (isset($_SESSION['message_succes'])) {
         .modal-box .modal-actions .btn-confirm-danger { background: #dc2626; color: white; padding: 10px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; text-decoration: none; }
         .modal-box .modal-actions .btn-confirm-danger:hover { background: #b91c1c; transform: scale(1.02); }
         @media (max-width: 480px) { .card { padding: 24px 16px; } .modal-box { margin: 16px; padding: 24px; } }
-    </style>
+
+
+        /* ============================================================
+           MODE SOMBRE (genere automatiquement)
+           ============================================================ */
+
+body.theme-sombre {
+    background: #0f172a;
+}
+
+body.theme-sombre .card {
+    background: #1e293b;
+    border: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .card .icon {
+    color: #f87171;
+}
+
+body.theme-sombre .card h2 {
+    color: #f87171;
+}
+
+body.theme-sombre .card .subtitle {
+    color: #94a3b8;
+}
+
+body.theme-sombre .card .consequences {
+    background: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-sombre .card .consequences li {
+    color: #cbd5e1;
+}
+
+body.theme-sombre .card .consequences li i {
+    color: #f87171;
+}
+
+body.theme-sombre .card .warning {
+    color: #f87171;
+}
+
+body.theme-sombre .btn-secondary {
+    background: #334155;
+    color: #f1f5f9;
+}
+
+body.theme-sombre .message.error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .message.success {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+body.theme-sombre .modal-box {
+    background: #1e293b;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+body.theme-sombre .modal-box .modal-icon {
+    color: #f87171;
+}
+
+body.theme-sombre .modal-box h3 {
+    color: #f87171;
+}
+
+body.theme-sombre .modal-box p {
+    color: #cbd5e1;
+}
+
+body.theme-sombre .modal-box .modal-actions .btn-cancel {
+    background: #334155;
+    color: #f1f5f9;
+}
+</style>
 </head>
 <body>
 

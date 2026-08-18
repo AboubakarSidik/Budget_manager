@@ -21,6 +21,10 @@ $page_actuelle = basename($_SERVER['PHP_SELF']);
     <div class="top-row">
         <div class="logo"><h1><i class="fas fa-wallet"></i> Budget Manager</h1></div>
         <div class="user-info">
+            <button onclick="toggleTheme()" class="theme-toggle" title="Changer le thème (Clair/Sombre)">
+                <i class="fas fa-sun" id="themeIcon"></i>
+                <span class="theme-label" id="themeLabel">Clair</span>
+            </button>
             <span class="user-name"><i class="fas fa-user"></i> <?= afficher($_SESSION['utilisateur_nom'] ?? 'Utilisateur') ?></span>
             <a href="logout.php" class="logout-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
         </div>
